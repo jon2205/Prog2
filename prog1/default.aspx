@@ -4,7 +4,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
     ConnectionString="<%$ ConnectionStrings:BasaDateConnectionString2 %>" 
-    SelectCommand="SELECT * FROM [kategorys]"></asp:SqlDataSource>
+    SelectCommand="SELECT * FROM [kategorys]" 
+        onselecting="SqlDataSource1_Selecting"></asp:SqlDataSource>
     Дата:
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
     <br />
@@ -17,4 +18,9 @@
     <br />
     <br />
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />
+    <br />
+    <br />
+    <asp:ListBox ID="ListBox1" runat="server" Font-Bold="False" Font-Italic="False" 
+        Font-Overline="False" Font-Underline="False" Rows="30"></asp:ListBox>
+    <br />
 </asp:Content>
