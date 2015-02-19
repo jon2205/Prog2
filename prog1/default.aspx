@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
     ConnectionString="<%$ ConnectionStrings:BasaDateConnectionString2 %>" 
-    SelectCommand="SELECT * FROM [kategotys]"></asp:SqlDataSource>
+    SelectCommand="SELECT * FROM [kategorys]"></asp:SqlDataSource>
     Дата:
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
     <br />
