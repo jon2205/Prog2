@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    Выберите период:&nbsp;
     <asp:DropDownList ID="DropDownList1" runat="server">
         <asp:ListItem Value="1">Сегодня</asp:ListItem>
         <asp:ListItem Value="2">Вчера</asp:ListItem>

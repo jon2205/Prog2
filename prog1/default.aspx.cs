@@ -92,6 +92,10 @@ namespace prog1
             {
                 TextBox1.Text = DateTime.Now.ToString("dd-MM-yyyy");
             }
+            if (TextBox2.Text == "")
+            {
+                TextBox2.Text = "0,00";
+            }
             outputData();
         }
 
@@ -100,9 +104,50 @@ namespace prog1
             string s1 = TextBox1.Text.ToString();
             string s2 = TextBox2.Text.ToString();
             string s3 = (DropDownList1.SelectedIndex+1).ToString();
+            s2 = s2.Replace('.', ',');
 
-            s2 = s2.Replace(',', '.');
+            DateTime data;
+            if (DateTime.TryParse(s1, out data))
+            {
+                Label1.Text = "";
+                for (int i = 0; i < s1.Length; i++)
+                {
+                    if (Char.IsDigit(s1[i]) == false)
+                    {
+                        s1=s1.Remove(i, 1).Insert(i, "-");
+                    }
+                }
+            }
+            else
+            {
+                Label1.Text = "Не правильно введена дата";
+                return;
+            }
+
+            if (DateTime.Now.CompareTo(data)>=0)
+            {
+                Label1.Text = "";
+            }
+            else
+            {
+                Label1.Text = "Введите более ранюю дату";
+                return;
+            }
             
+            
+            double summa;
+            if (Double.TryParse(s2, out summa))
+            {
+                Label2.Text = "";
+                s2 = (Math.Floor(Convert.ToDouble(s2) * 100) / 100).ToString();
+                s2 = s2.Replace(',', '.');
+            }
+            else
+            {
+                Label2.Text="Не правильно введена сумма";
+                return;
+            }
+
             insertData(s1,s2,s3);
             outputData();
         }

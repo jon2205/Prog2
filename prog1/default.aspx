@@ -6,19 +6,21 @@
     ConnectionString="<%$ ConnectionStrings:BasaDateConnectionString2 %>" 
     SelectCommand="SELECT * FROM [kategorys]" 
         onselecting="SqlDataSource1_Selecting"></asp:SqlDataSource>
-    Дата:
+    Дата:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <asp:Label ID="Label1" runat="server"></asp:Label>
     <br />
-    Сумма:
-    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+    Сумма:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:TextBox ID="TextBox2" runat="server" style="margin-left: 0px"></asp:TextBox>
+    <asp:Label ID="Label2" runat="server"></asp:Label>
     <br />
-    Критерий: <asp:DropDownList ID="DropDownList1" runat="server" 
+    Критерий:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="DropDownList1" runat="server" 
     DataSourceID="SqlDataSource1" DataTextField="name" DataValueField="id">
 </asp:DropDownList>
     <br />
     <br />
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Ввод" />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:Button ID="Button2" runat="server" onclick="Button2_Click" 
         style="margin-bottom: 0px" Text="Отчет" />
     <br />
