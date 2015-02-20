@@ -10,6 +10,30 @@ namespace prog1
 {
     public partial class _default : System.Web.UI.Page
     {
+        //получить название категории по номеру
+        private string getKategory(string s)
+        {
+            System.Data.SqlClient.SqlConnection sqlConnection1 =
+                new System.Data.SqlClient.SqlConnection("Data Source=ZHENYA-PC\\SQLEXPRESS;Initial Catalog=BasaDate;Integrated Security=True");
+
+            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = "SELECT * FROM kategorys WHERE id="+s+" FOR XML AUTO";
+            cmd.Connection = sqlConnection1;
+
+            sqlConnection1.Open();
+
+            XmlReader myXmlReader = cmd.ExecuteXmlReader();
+
+            myXmlReader.Read();
+            string s1 = myXmlReader.GetAttribute("name");
+            
+            myXmlReader.Close();
+            sqlConnection1.Close();
+            
+            return s1;
+        }
+
         //вывод самых последних изменений
         private void outputData() 
         {
@@ -37,6 +61,7 @@ namespace prog1
                     s2=s2.Replace('.', ',');
                     s2 = (Math.Floor(Convert.ToDouble(s2) * 100) / 100).ToString();
                     string s3 = myXmlReader.GetAttribute("kategory");
+                    s3 = getKategory(s3);
                     ListBox1.Items.Add(s1 + " : " + s2 + " : " + s3);
                 }
             }

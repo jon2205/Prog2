@@ -10,6 +10,35 @@ namespace prog1
 {
     public partial class statistic : System.Web.UI.Page
     {
+        private void vivod(List<double> ld,  List<string> ls)
+        {
+            
+            for (int i = 0; i < ld.Count - 1; i++)
+            {
+                for (int j = i + 1; j < ld.Count; j++)
+                {
+                    if (ld[i] < ld[j])
+                    {
+                        double k = ld[i];
+                        ld[i] = ld[j];
+                        ld[j] = k;
+
+                        string s = ls[i];
+                        ls[i] = ls[j];
+                        ls[j] = s;
+                    }
+                }
+            }
+            
+            ListBox1.Items.Clear();
+
+            for (int i = 0; i < ld.Count; i++)
+            {
+                ListBox1.Items.Add(ls[i]+" : "+ld[i].ToString());
+            }
+            
+        }
+
         private void getData(string s_start, string s_finish)
         {
             System.Data.SqlClient.SqlConnection sqlConnection1 =
@@ -24,8 +53,10 @@ namespace prog1
 
             XmlReader myXmlReader = cmd.ExecuteXmlReader();
 
-            ListBox1.Items.Clear();
-
+            
+            List<double> ld = new List<double>();
+            List<string> ls = new List<string>();
+            
             while (myXmlReader.Read())
             {
                 if (myXmlReader.HasAttributes)
@@ -34,12 +65,15 @@ namespace prog1
                     s1 = s1.Replace('.', ',');
                     s1 = (Math.Floor(Convert.ToDouble(s1) * 100) / 100).ToString();
                     string s2 = myXmlReader.GetAttribute("name");
-                    ListBox1.Items.Add(s1+" : "+s2);
+                    ld.Add(Convert.ToDouble(s1));
+                    ls.Add(s2);
                 }
             }
 
             myXmlReader.Close();
             sqlConnection1.Close();
+
+            vivod(ld,ls);
         }
         
         protected void Page_Load(object sender, EventArgs e)
@@ -52,8 +86,10 @@ namespace prog1
             switch (n) {
                 case 0: getData(DateTime.Now.ToString("dd-MM-yyyy"), DateTime.Now.ToString("dd-MM-yyyy")); break;
                 case 1: getData(DateTime.Now.AddDays(-1).ToString("dd-MM-yyyy"), DateTime.Now.AddDays(-1).ToString("dd-MM-yyyy")); break;
+                case 2: getData(DateTime.Now.ToString("01-MM-yyyy"), DateTime.Now.ToString("dd-MM-yyyy")); break;
+                case 3: getData(DateTime.Now.AddMonths(-1).ToString("01-MM-yyyy"), DateTime.Now.AddMonths(-1).ToString((DateTime.DaysInMonth(DateTime.Now.AddMonths(-1).Year, DateTime.Now.AddMonths(-1).Month).ToString()+"-MM-yyyy"))); break;
+                case 4: getData("01-01-1900", DateTime.Now.ToString("dd-MM-yyyy")); break;
             }
-            //getData("01-01-1900", DateTime.Now.ToString("dd-MM-yyyy"));
         }
 
         protected void Button2_Click(object sender, EventArgs e)

@@ -20,7 +20,7 @@
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Ввод" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:Button ID="Button2" runat="server" onclick="Button2_Click" 
-        style="margin-bottom: 0px" Text="Статистика" />
+        style="margin-bottom: 0px" Text="Отчет" />
     <br />
     <br />
     <asp:ListBox ID="ListBox1" runat="server" Font-Bold="False" Font-Italic="False" 
