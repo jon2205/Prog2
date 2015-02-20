@@ -36,7 +36,8 @@ namespace prog1
                     string s2 = myXmlReader.GetAttribute("summa");
                     s2=s2.Replace('.', ',');
                     s2 = (Math.Floor(Convert.ToDouble(s2) * 100) / 100).ToString();
-                    ListBox1.Items.Add(s1 + " : " + s2);
+                    string s3 = myXmlReader.GetAttribute("kategory");
+                    ListBox1.Items.Add(s1 + " : " + s2 + " : " + s3);
                 }
             }
 
@@ -52,11 +53,11 @@ namespace prog1
 
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "INSERT INTO rashodi (data, summa, kategory) VALUES ('" + s1 + "',"+s2+","+s3+")";
+            cmd.CommandText = "INSERT INTO rashodi (data, summa, kategory) VALUES ('"+s1+"',"+s2+","+s3+")";
             cmd.Connection = sqlConnection1;
 
             sqlConnection1.Open();
-            cmd.ExecuteNonQuery().ToString();
+            cmd.ExecuteNonQuery();
             sqlConnection1.Close();   
         }
 
@@ -84,6 +85,11 @@ namespace prog1
         protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
 
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("statistic.aspx");   
         }
     }
 }
